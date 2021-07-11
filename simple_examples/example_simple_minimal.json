@@ -1,0 +1,16 @@
+{
+    "operator": {
+        "contact": "https://config.berlin.freifunk.net/contact/42/ImZmZnctbWF"
+    },
+    "basicConfig": {
+        "nodeName": "gib-mir-einen-Namen",
+        "ipAddresses": {
+            "mesh": [
+                "192.0.2.5",
+                "192.0.2.6",
+                "192.0.2.7"
+            ],
+            "dhcp": "192.0.2.96/27"
+        }
+    }
+}

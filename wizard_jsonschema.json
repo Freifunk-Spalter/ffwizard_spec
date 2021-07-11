@@ -1,0 +1,154 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "ffwizard router description",
+    "type": "object",
+    "properties": {
+        "operator": {
+            "type": "object",
+            "properties": {
+                "nickname": {
+                    "type": "string"
+                },
+                "realname": {
+                    "type": "string"
+                },
+                "contact": {
+                    "description": "May contain users E-Mail-address. At default, config.berlin.freifunk.net will insert the link to the mail-form here.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "contact"
+            ]
+        },
+        "basicConfig": {
+            "type": "object",
+            "properties": {
+                "nodeName": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "object",
+                    "properties": {
+                        "latitude": {
+                            "type": "number"
+                        },
+                        "longitude": {
+                            "type": "number"
+                        },
+                        "locationString": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "latitude",
+                        "longitude"
+                    ]
+                },
+                "internet": {
+                    "type": "object",
+                    "properties": {
+                        "shareInternet": {
+                            "type": "boolean"
+                        },
+                        "shareViaTunnel": {
+                            "type": "boolean"
+                        },
+                        "establishMeshTunnel": {
+                            "type": "boolean"
+                        },
+                        "downloadBandwitdh": {
+                            "description": "Download bandwidth in MBit/s",
+                            "type": "number"
+                        },
+                        "uploadBandwidth": {
+                            "description": "Upload bandwidth in MBit/s",
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "shareInternet",
+                        "shareViaTunnel",
+                        "establishMeshTunnel",
+                        "downloadBandwitdh",
+                        "uploadBandwidth"
+                    ]
+                },
+                "enableMonitoring": {
+                    "type": "boolean"
+                },
+                "ipAddresses": {
+                    "type": "object",
+                    "properties": {
+                        "mesh": {
+                            "type": "array",
+                            "uniqueItems": true,
+                            "minItems": 1,
+                            "items": {
+                                "description": "This string shouldn't be empty. shortest possible string has 7 chars: 0.0.0.0",
+                                "type": "string",
+                                "minLength": 7
+                            }
+                        },
+                        "dhcp": {
+                            "description": "This string shouldn't be empty. shortest possible string has 9 chars: 0.0.0.0/0",
+                            "type": "string",
+                            "minLength": 9
+                        }
+                    },
+                    "required": [
+                        "mesh",
+                        "dhcp"
+                    ]
+                },
+                "interfaceConfig": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "description": "Interface Name",
+                                "type": "string"
+                            },
+                            "useAs": {
+                                "description": "Use this Interface as (role)",
+                                "type": "string"
+                            },
+                            "ipAddress": {
+                                "description": "IP-Adress that's connected with this interface.",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "useAs"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "nodeName",
+                "ipAddresses"
+            ]
+        },
+        "advancedConfig": {
+            "type": "object",
+            "properties": {
+                "sshKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "VLANs": {
+                    "type": "array"
+                }
+            }
+        }
+    },
+    "required": [
+        "operator",
+        "basicConfig"
+    ]
+}

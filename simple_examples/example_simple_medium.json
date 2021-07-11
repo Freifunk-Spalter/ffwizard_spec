@@ -1,0 +1,46 @@
+{
+    "operator": {
+        "nickname": "akira25",
+        "realname": "Martin",
+        "contact": "https://config.berlin.freifunk.net/contact/42/ImZmZnctbWF"
+    },
+    "basicConfig": {
+        "nodeName": "fffw-dev",
+        "location": {
+            "latitude": 52.15,
+            "longitude": 14.5
+        },
+        "internet": {
+            "shareInternet": true,
+            "shareViaTunnel": true,
+            "establishMeshTunnel": false,
+            "downloadBandwitdh": 20,
+            "uploadBandwidth": 5
+        },
+        "enableMonitoring": true,
+        "ipAddresses": {
+            "mesh": [
+                "192.0.2.5",
+                "192.0.2.6",
+                "192.0.2.7"
+            ],
+            "dhcp": "192.0.2.96/27"
+        },
+        "interfaceConfig": [
+            {
+                "name": "eth1",
+                "useAs": "WAN"
+            },
+            {
+                "name": "eth0.1",
+                "useAs": "LAN",
+                "ipAddress": "192.0.2.5"
+            },
+            {
+                "name": "eth0.2",
+                "useAs": "MESH",
+                "ipAddress": "192.0.2.6"
+            }
+        ]
+    }
+}
