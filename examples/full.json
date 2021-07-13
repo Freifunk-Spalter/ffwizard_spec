@@ -22,6 +22,10 @@
             "upload": 5000
         },
         "monitoring": true,
+        "autoupdate": {
+            "enabled": true,
+            "branch": "stable"
+        },
         "ips": {
             "mesh": [
                 "192.0.2.4/30",
@@ -53,7 +57,7 @@
         },
         {
             "device": "eth0.2",
-            "name":"device_name_in_monitor",
+            "name": "device_name_in_monitor",
             "role": "MESH-BRIDGE",
             "ip": "192.0.2.4/30",
             "bridge-type": "AIRMAX"
@@ -62,9 +66,8 @@
             "device": "eth0.3",
             "role": "DISABLED"
         }
-        
     ],
-    "sshkeys":[
+    "sshkeys": [
         "ssh-rsa AAAAfeghad user@host",
         "ssh-rsa AAAAsadf"
     ]

@@ -17,7 +17,8 @@
                     "type": "string"
                 },
                 "email": {
-                    "type": "string"
+                    "type": "string",
+                    "format": "email"
                 },
                 "url": {
                     "description": "At default, config.berlin.freifunk.net will insert the link to the mail-form here.",
@@ -59,9 +60,11 @@
                     "type": "object",
                     "properties": {
                         "share": {
+                            "description": "Share the internet",
                             "type": "boolean"
                         },
                         "tunnel": {
+                            "description": "Route internet traffic via tunnel.",
                             "type": "boolean"
                         },
                         "mesh-tunnel": {
@@ -88,6 +91,21 @@
                 },
                 "monitoring": {
                     "type": "boolean"
+                },
+                "autoupdate": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "branch": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "enabled",
+                        "branch"
+                    ]
                 },
                 "ips": {
                     "type": "object",
