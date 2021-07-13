@@ -1,0 +1,71 @@
+{
+    "version": "1.2",
+    "contact": {
+        "nickname": "akira25",
+        "realname": "Martin",
+        "email": "me@example.com",
+        "url": "https://config.berlin.freifunk.net/contact/42/ImZmZnctbWF"
+    },
+    "node": {
+        "name": "fffw-dev",
+        "community": "Freifunk Berlin",
+        "location": {
+            "latitude": 52.15,
+            "longitude": 14.5,
+            "description": "Somewhere in Berlin"
+        },
+        "internet": {
+            "share": true,
+            "tunnel": true,
+            "mesh-tunnel": false,
+            "download": 20000,
+            "upload": 5000
+        },
+        "monitoring": true,
+        "ips": {
+            "mesh": [
+                "192.0.2.4/30",
+                "192.0.2.8/32",
+                "192.0.2.9/32"
+            ],
+            "dhcp": "192.0.2.96/27"
+        }
+    },
+    "interfaces": [
+        {
+            "device": "radio0",
+            "role": "AP-MESH",
+            "ip": "192.0.2.8/32"
+        },
+        {
+            "device": "radio1",
+            "role": "AP",
+            "ip": "192.0.2.9/32"
+        },
+        {
+            "device": "eth1",
+            "role": "WAN"
+        },
+        {
+            "device": "eth0.1",
+            "role": "LAN",
+            "ip": "192.0.2.96/27"
+        },
+        {
+            "device": "eth0.2",
+            "name":"device_name_in_monitor",
+            "role": "MESH-BRIDGE",
+            "ip": "192.0.2.4/30",
+            "bridge-type": "AIRMAX"
+        },
+        {
+            "device": "eth0.3",
+            "role": "DISABLED"
+        }
+        
+    ],
+    "sshkeys":[
+        "ssh-rsa AAAAfeghad user@host",
+        "ssh-rsa AAAAsadf"
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "version": "1.0",
+    "contact": {
+        "url": "https://config.berlin.freifunk.net/contact/42/ImZmZnctbWF"
+    },
+    "node": {
+        "name": "gib-mir-einen-Namen",
+        "ips": {
+            "mesh": [
+                "192.0.2.5",
+                "192.0.2.6",
+                "192.0.2.7"
+            ],
+            "dhcp": "192.0.2.96/27"
+        }
+    }
+}

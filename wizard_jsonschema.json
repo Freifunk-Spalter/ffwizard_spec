@@ -1,9 +1,13 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$schema": "https://json-schema.org/draft-07/schema",
     "title": "ffwizard router description",
     "type": "object",
     "properties": {
-        "operator": {
+        "version": {
+            "description": "This represents the version of the file format.",
+            "type": "string"
+        },
+        "contact": {
             "type": "object",
             "properties": {
                 "nickname": {
@@ -12,19 +16,25 @@
                 "realname": {
                     "type": "string"
                 },
-                "contact": {
-                    "description": "May contain users E-Mail-address. At default, config.berlin.freifunk.net will insert the link to the mail-form here.",
+                "email": {
+                    "type": "string"
+                },
+                "url": {
+                    "description": "At default, config.berlin.freifunk.net will insert the link to the mail-form here.",
                     "type": "string"
                 }
             },
             "required": [
-                "contact"
+                "url"
             ]
         },
-        "basicConfig": {
+        "node": {
             "type": "object",
             "properties": {
-                "nodeName": {
+                "name": {
+                    "type": "string"
+                },
+                "community": {
                     "type": "string"
                 },
                 "location": {
@@ -36,7 +46,7 @@
                         "longitude": {
                             "type": "number"
                         },
-                        "locationString": {
+                        "description": {
                             "type": "string"
                         }
                     },
@@ -48,36 +58,38 @@
                 "internet": {
                     "type": "object",
                     "properties": {
-                        "shareInternet": {
+                        "share": {
                             "type": "boolean"
                         },
-                        "shareViaTunnel": {
+                        "tunnel": {
                             "type": "boolean"
                         },
-                        "establishMeshTunnel": {
+                        "mesh-tunnel": {
                             "type": "boolean"
                         },
-                        "downloadBandwitdh": {
-                            "description": "Download bandwidth in MBit/s",
-                            "type": "number"
+                        "download": {
+                            "description": "Download bandwidth in kBit/s",
+                            "type": "number",
+                            "minimum": 1000
                         },
-                        "uploadBandwidth": {
-                            "description": "Upload bandwidth in MBit/s",
-                            "type": "number"
+                        "upload": {
+                            "description": "Upload bandwidth in kBit/s",
+                            "type": "number",
+                            "minimum": 1000
                         }
                     },
                     "required": [
-                        "shareInternet",
-                        "shareViaTunnel",
-                        "establishMeshTunnel",
-                        "downloadBandwitdh",
-                        "uploadBandwidth"
+                        "share",
+                        "tunnel",
+                        "mesh-tunnel",
+                        "download",
+                        "upload"
                     ]
                 },
-                "enableMonitoring": {
+                "monitoring": {
                     "type": "boolean"
                 },
-                "ipAddresses": {
+                "ips": {
                     "type": "object",
                     "properties": {
                         "mesh": {
@@ -85,9 +97,9 @@
                             "uniqueItems": true,
                             "minItems": 1,
                             "items": {
-                                "description": "This string shouldn't be empty. shortest possible string has 7 chars: 0.0.0.0",
+                                "description": "This string shouldn't be empty. shortest possible string has 9 chars: 0.0.0.0/0",
                                 "type": "string",
-                                "minLength": 7
+                                "minLength": 9
                             }
                         },
                         "dhcp": {
@@ -100,55 +112,57 @@
                         "mesh",
                         "dhcp"
                     ]
-                },
-                "interfaceConfig": {
-                    "type": "array",
-                    "uniqueItems": true,
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "description": "Interface Name",
-                                "type": "string"
-                            },
-                            "useAs": {
-                                "description": "Use this Interface as (role)",
-                                "type": "string"
-                            },
-                            "ipAddress": {
-                                "description": "IP-Adress that's connected with this interface.",
-                                "type": "string"
-                            }
-                        },
-                        "required": [
-                            "name",
-                            "useAs"
-                        ]
-                    }
                 }
             },
             "required": [
-                "nodeName",
-                "ipAddresses"
+                "name",
+                "ips"
             ]
         },
-        "advancedConfig": {
-            "type": "object",
-            "properties": {
-                "sshKeys": {
-                    "type": "array",
-                    "items": {
+        "interfaces": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "device": {
+                        "description": "device name like eth0.5",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "device name how it will appear in i.e. the Monitor",
+                        "type": "string"
+                    },
+                    "role": {
+                        "description": "Use this Interface as role",
+                        "type": "string"
+                    },
+                    "ip": {
+                        "description": "IP-Address that's connected with this interface.",
+                        "type": "string"
+                    },
+                    "bridge-type": {
+                        "description": "some",
                         "type": "string"
                     }
                 },
-                "VLANs": {
-                    "type": "array"
-                }
+                "required": [
+                    "device",
+                    "role"
+                ]
+            }
+        },
+        "sshkeys": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "string"
             }
         }
     },
     "required": [
-        "operator",
-        "basicConfig"
+        "version",
+        "contact",
+        "node"
     ]
 }
