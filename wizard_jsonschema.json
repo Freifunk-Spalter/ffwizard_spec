@@ -1,11 +1,13 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema",
     "title": "ffwizard router description",
+    "description": "This schema describes the ffwizard-json v1.0",
     "type": "object",
     "properties": {
         "version": {
             "description": "This represents the version of the file format.",
-            "type": "string"
+            "type": "string",
+            "pattern": "^1\\.0$"
         },
         "contact": {
             "type": "object",
@@ -124,11 +126,16 @@
                             "description": "This string shouldn't be empty. shortest possible string has 9 chars: 0.0.0.0/0",
                             "type": "string",
                             "minLength": 9
+                        },
+                        "ipv6":{
+                            "description": "ipv6-network from that we get mesh and ip-address.",
+                            "type":"string"
                         }
                     },
                     "required": [
                         "mesh",
-                        "dhcp"
+                        "dhcp",
+                        "ipv6"
                     ]
                 }
             },
