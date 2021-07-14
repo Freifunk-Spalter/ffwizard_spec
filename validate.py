@@ -16,7 +16,7 @@ schema = json.load(open(sys.argv[2]))
 jsonschema.validate(
     instance=string,
     schema=schema,
-    format_checker=jsonschema.draft7_format_checker,
+    format_checker=jsonschema.FormatChecker()
 )
 
 print("The JSON-String looks like it's valid. :)")
