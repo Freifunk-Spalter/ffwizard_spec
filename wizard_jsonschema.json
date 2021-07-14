@@ -65,12 +65,12 @@
                             "description": "Share the internet",
                             "type": "boolean"
                         },
-                        "tunnel": {
-                            "description": "Route internet traffic via tunnel.",
-                            "type": "boolean"
+                        "uplink-tunnel": {
+                            "description": "Route internet traffic via tunneltype x. empty means notunnel.",
+                            "type": "string"
                         },
                         "mesh-tunnel": {
-                            "type": "boolean"
+                            "type": "string"
                         },
                         "download": {
                             "description": "Download bandwidth in kBit/s",
@@ -85,7 +85,7 @@
                     },
                     "required": [
                         "share",
-                        "tunnel",
+                        "uplink-tunnel",
                         "mesh-tunnel",
                         "download",
                         "upload"

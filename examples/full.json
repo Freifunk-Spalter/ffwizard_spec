@@ -16,8 +16,8 @@
         },
         "internet": {
             "share": true,
-            "tunnel": true,
-            "mesh-tunnel": false,
+            "uplink-tunnel": "tunneldigger",
+            "mesh-tunnel": "wireguard",
             "download": 20000,
             "upload": 5000
         },
