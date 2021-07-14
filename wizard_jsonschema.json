@@ -9,6 +9,10 @@
             "type": "string",
             "pattern": "^1\\.0$"
         },
+        "created": {
+            "type":"string",
+            "format": "date-time"
+        },
         "contact": {
             "type": "object",
             "properties": {
@@ -24,7 +28,8 @@
                 },
                 "url": {
                     "description": "At default, config.berlin.freifunk.net will insert the link to the mail-form here.",
-                    "type": "string"
+                    "type": "string",
+                    "format": "uri"
                 }
             },
             "required": [
@@ -187,6 +192,7 @@
     },
     "required": [
         "version",
+        "created",
         "contact",
         "node"
     ]
