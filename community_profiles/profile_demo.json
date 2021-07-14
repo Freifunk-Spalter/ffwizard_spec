@@ -1,0 +1,25 @@
+{
+	"community": {
+		"name": "Freifunk Demo",
+        "homepage": "http://www.freifunk.net",
+        "ssid": "demo.freifunk.net",
+        "mesh_network": "10.11.12.0/24",
+        "latitude": 52.52075,
+        "longitude":13.40948,
+		"suffix": "ff",
+		"vap": true,
+		"adhoc_dhcp_when_vap": true,
+		"ipv6": true,
+		"ipv6_config": "auto-ipv6-fromv4",
+		"ipv6_prefix": "fdca:ffff:ffff::/48"
+	},
+	"defaults": {
+		"interface": {
+			"netmask": "255.255.255.0"
+		},
+		"luci_splash": {
+			"limit_up": 50,
+			"limit_down": 200
+		}
+	}
+}
