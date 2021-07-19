@@ -1,0 +1,268 @@
+<body class="lang_de Profile" data-page="admin-freifunk-basics-profile" style="margin-top: 40px;">
+		<header>
+			<div class="fill">
+				<div class="container">
+					<a class="brand" href="/">k12-e16</a>
+					<ul class="nav" id="topmenu" style=""><li class="dropdown"><a class="menu" href="#">Freifunk</a><ul class="dropdown-menu"><li><a href="/cgi-bin/luci/admin/freifunk/basics">Grundeinstellungen</a></li><li><a href="/cgi-bin/luci/admin/freifunk/contact">Kontakt</a></li><li><a href="/cgi-bin/luci/admin/freifunk/Index-Page">Hauptseite</a></li><li><a href="/cgi-bin/luci/admin/freifunk/wireless-mesh">WLAN-Mesh</a></li><li><a href="/cgi-bin/luci/admin/freifunk/bandwidth">Bandbreite</a></li><li><a href="/cgi-bin/luci/admin/freifunk/bbbdigger">BBB-VPN (bbbdigger)</a></li><li><a href="/cgi-bin/luci/admin/freifunk/policyrouting">Policy Routing</a></li></ul></li><li class="dropdown"><a class="menu" href="#">Status</a><ul class="dropdown-menu"><li><a href="/cgi-bin/luci/admin/status/overview">Übersicht</a></li><li><a href="/cgi-bin/luci/admin/status/iptables">Firewall</a></li><li><a href="/cgi-bin/luci/admin/status/routes">Routen</a></li><li><a href="/cgi-bin/luci/admin/status/syslog">Systemprotokoll</a></li><li><a href="/cgi-bin/luci/admin/status/dmesg">Kernelprotokoll</a></li><li><a href="/cgi-bin/luci/admin/status/processes">Prozesse</a></li><li><a href="/cgi-bin/luci/admin/status/channel_analysis">Kanalanalyse</a></li><li><a href="/cgi-bin/luci/admin/status/realtime">Echtzeit-Diagramme</a></li><li><a href="/cgi-bin/luci/admin/status/olsr">OLSR</a></li></ul></li><li class="dropdown"><a class="menu" href="#">System</a><ul class="dropdown-menu"><li><a href="/cgi-bin/luci/admin/system/system">System</a></li><li><a href="/cgi-bin/luci/admin/system/admin">Administration</a></li><li><a href="/cgi-bin/luci/admin/system/antennas">Antennas settings</a></li><li><a href="/cgi-bin/luci/admin/system/opkg">Paketverwaltung</a></li><li><a href="/cgi-bin/luci/admin/system/startup">Systemstart</a></li><li><a href="/cgi-bin/luci/admin/system/crontab">Geplante Aufgaben</a></li><li><a href="/cgi-bin/luci/admin/system/leds">LED-Konfiguration</a></li><li><a href="/cgi-bin/luci/admin/system/flash">Backup / Firmware Update</a></li><li><a href="/cgi-bin/luci/admin/system/reboot">Neu Starten</a></li></ul></li><li class="dropdown"><a class="menu" href="#">Dienste</a><ul class="dropdown-menu"><li><a href="/cgi-bin/luci/admin/services/olsrd6">OLSR IPv6</a></li><li><a href="/cgi-bin/luci/admin/services/olsrd">OLSR IPv4</a></li></ul></li><li class="dropdown"><a class="menu" href="#">Netzwerk</a><ul class="dropdown-menu"><li><a href="/cgi-bin/luci/admin/network/network">Netzwerkschnittstellen</a></li><li><a href="/cgi-bin/luci/admin/network/wireless">WLAN</a></li><li><a href="/cgi-bin/luci/admin/network/dhcp">DHCP und DNS</a></li><li><a href="/cgi-bin/luci/admin/network/hosts">Rechnernamen</a></li><li><a href="/cgi-bin/luci/admin/network/routes">Statische Routen</a></li><li><a href="/cgi-bin/luci/admin/network/firewall">Firewall</a></li><li><a href="/cgi-bin/luci/admin/network/diagnostics">Diagnosen</a></li></ul></li><li class="dropdown"><a class="menu" href="#">Statistiken</a><ul class="dropdown-menu"><li><a href="/cgi-bin/luci/admin/statistics/graphs">Diagramme</a></li><li><a href="/cgi-bin/luci/admin/statistics/collectd">Setup</a></li></ul></li><li><a href="/cgi-bin/luci/admin/logout">Abmelden</a></li></ul>
+					
+				</div>
+			</div>
+		</header>
+
+		<div id="maincontent" class="container"><noscript>
+				<div class="alert-message warning">
+					<h4>JavaScript benötigt!</h4>
+					<p>Im Browser muss JavaScript aktiviert sein oder LuCI wird nicht richtig funktionieren.</p>
+				</div>
+			</noscript>
+
+			<div id="tabmenu" style=""><ul class="tabs"><li class="tabmenu-item-profile"><a href="/cgi-bin/luci/admin/freifunk/basics/profile">Welcome Page</a></li><li class="tabmenu-item-profile_expert "><a href="/cgi-bin/luci/admin/freifunk/basics/profile_expert">Contact and Access</a></li><li class="tabmenu-item-profile_expert active"><a href="/cgi-bin/luci/admin/freifunk/basics/profile_expert">Router Configuration</a></li><li class="tabmenu-item-profile_expert "><a href="/cgi-bin/luci/admin/freifunk/basics/profile_expert">Interface Configuration</a></li><li class="tabmenu-item-profile_expert "><a href="/cgi-bin/luci/admin/freifunk/basics/profile_expert">Finalize Setup</a></li></ul></div>
+
+
+<script type="text/javascript" src="/luci-static/resources/promis.min.js?v=git-21.188.55099-e52e1de"></script>
+<script type="text/javascript" src="/luci-static/resources/luci.js?v=git-21.188.55099-e52e1de"></script>
+<script type="text/javascript">
+	L = new LuCI({"apply_rollback":90,"resource":"\/luci-static\/resources","media":"\/luci-static\/bootstrap","documentroot":"\/www","pathinfo":"\/admin\/freifunk\/basics\/profile","apply_display":1.5,"requestpath":["admin","freifunk","basics","profile"],"ubuspath":"\/ubus\/","scriptname":"\/cgi-bin\/luci","dispatchpath":["admin","freifunk","basics","profile"],"sessionid":"d256edef1c8ce05c6e730e15080dc956","token":"cba8f7e66908f279eb6b597693c1c24a","apply_timeout":5,"apply_holdoff":4,"nodespec":{"order":10,"satisfied":true,"title":"Profile","action":{"post":{"cbi.submit":true},"type":"cbi","path":"freifunk\/profile"}},"pollinterval":5});
+</script>
+
+
+
+
+<form method="post" name="cbi" action="/cgi-bin/luci/admin/freifunk/basics/profile" enctype="multipart/form-data" onreset="return cbi_validate_reset(this)" onsubmit="return cbi_validate_form(this, 'Einige Felder sind ungültig, kann das Formular nicht speichern!')" data-strings="{&quot;path&quot;:{&quot;resource&quot;:&quot;\/luci-static\/resources&quot;,&quot;browser&quot;:&quot;\/cgi-bin\/luci\/admin\/filebrowser&quot;},&quot;label&quot;:{&quot;choose&quot;:&quot;-- Bitte auswählen --&quot;,&quot;custom&quot;:&quot;-- benutzerdefiniert --&quot;}}">
+	<div>
+		<input type="hidden" name="token" value="cba8f7e66908f279eb6b597693c1c24a">
+		<input type="hidden" name="cbi.submit" value="1">
+		<input type="submit" value="Speichern" class="hidden">
+	</div>
+
+<div class="cbi-map" id="cbi-profile_berlin">
+	
+		<h2 name="content">Router Configuration</h2>
+	
+	
+		<div class="cbi-map-descr">Text explaining the settings and how to get the data fill in</div>
+	
+	
+	<div class="cbi-section">
+		
+		
+		
+		<div class="cbi-section-node" id="cbi-profile_berlin-profile">
+			
+
+
+	<div class="cbi-value" id="cbi-profile_berlin-profile-name" data-index="1" data-depends="[]"><label class="cbi-value-title" for="cbid.profile_berlin.profile.name">Choose a community</label>
+		<div class="cbi-value-field">
+
+
+
+	<div id="cbid.profile_berlin.profile.name" data-idref="3fba37de"><select id="widget.cbid.olsrd.cfg07d149.IpVersion" name="cbid.olsrd.cfg07d149.IpVersion" size="1" class="cbi-input-select"><option value="4" selected="">Freifunk Berlin</option><option value="6and4">6and4</option></select></div>
+
+
+		</div></div>
+
+<div class="cbi-value" id="cbi-profile_berlin-profile-name" data-index="1" data-depends="[]"><label class="cbi-value-title" for="cbid.profile_berlin.profile.name">Knotenname</label>
+		<div class="cbi-value-field">
+
+
+
+	<div id="cbid.profile_berlin.profile.name" data-idref="3fba37de"><input id="widget.cbid.profile_berlin.profile.name" name="cbid.profile_berlin.profile.name" type="text" class="cbi-input-text" value="freifunk-router"></div>
+
+
+		</div></div><div class="cbi-value" id="cbi-profile_berlin-profile-homepage" data-index="2" data-depends="[]"><label class="cbi-value-title" for="cbid.profile_berlin.profile.homepage">Standort</label>
+		<div class="cbi-value-field">
+
+
+
+	<div id="cbid.profile_berlin.profile.homepage" data-idref="3aed83" data-changed="true"><input id="widget.cbid.profile_berlin.profile.homepage" name="cbid.profile_berlin.profile.homepage" type="text" class="cbi-input-text" value="John Smith"></div>
+
+
+		</div></div>
+
+<div class="cbi-value" id="cbi-profile_berlin-profile-country" data-index="3" data-depends="[]"><label class="cbi-value-title" for="cbid.profile_berlin.profile.country">Karte</label>
+		<div class="cbi-value-field">
+
+
+
+	<div id="cbid.profile_berlin.profile.country" data-idref="36058012"><img src="https://home.tobias-schwarz.com/freifunk/karte.png" width="70%"></div>
+
+
+		</div></div>
+
+<div class="cbi-value" id="cbi-profile_berlin-profile-country" data-index="3" data-depends="[]"><label class="cbi-value-title" for="cbid.profile_berlin.profile.country">Latitude</label>
+		<div class="cbi-value-field">
+
+
+
+	<div id="cbid.profile_berlin.profile.country" data-idref="36058012"><input id="widget.cbid.profile_berlin.profile.country" name="cbid.profile_berlin.profile.country" type="text" class="cbi-input-text" value="js@example.com"></div>
+
+
+		</div></div><div class="cbi-value" id="cbi-profile_berlin-profile-country" data-index="3" data-depends="[]"><label class="cbi-value-title" for="cbid.profile_berlin.profile.country">Longitude</label>
+		<div class="cbi-value-field">
+
+
+
+	<div id="cbid.profile_berlin.profile.country" data-idref="36058012"><input id="widget.cbid.profile_berlin.profile.country" name="cbid.profile_berlin.profile.country" type="text" class="cbi-input-text" value="js@example.com"></div>
+
+
+		</div></div><div class="cbi-value" id="cbi-profile_berlin-profile-ssid" data-index="4" data-depends="[]"><label class="cbi-value-title" for="cbid.profile_berlin.profile.ssid"></label>
+		<div class="cbi-value-field">
+
+
+
+	<div id="cbid.profile_berlin.profile.ssid" data-idref="8eb4eb70"><button class="cbi-button cbi-button-apply">Autodetect Geolocation</button></div>
+
+
+		</div></div>
+
+<div class="cbi-value" id="cbi-profile_berlin-profile-name" data-index="1" data-depends="[]"><label class="cbi-value-title" for="cbid.profile_berlin.profile.name">Share Internet</label>
+		<div class="cbi-value-field">
+
+
+
+	<div id="cbid.profile_berlin.profile.name" data-idref="3fba37de"><select id="widget.cbid.olsrd.cfg07d149.IpVersion" name="cbid.olsrd.cfg07d149.IpVersion" size="1" class="cbi-input-select"><option value="4" selected="">Yes, via XXX-Tunnel</option><option value="6and4">6and4</option></select><div class="cbi-value-description">You can choose to share via a tunnel or use your internet connection directly.</div></div>
+
+
+		</div></div><div class="cbi-value" id="cbi-profile_berlin-profile-name" data-index="1" data-depends="[]"><label class="cbi-value-title" for="cbid.profile_berlin.profile.name">Mesh via</label>
+		<div class="cbi-value-field">
+
+
+
+	<div id="cbid.profile_berlin.profile.name" data-idref="3fba37de"><select id="widget.cbid.olsrd.cfg07d149.IpVersion" name="cbid.olsrd.cfg07d149.IpVersion" size="1" class="cbi-input-select"><option value="4" selected="">WiFi and Internet</option><option value="6and4">6and4</option></select><div class="cbi-value-description">Meshing via Internet requires an internet connection. This will only transport traffic toward nodes in the Freifunk netwok. It won't provide internet access via your internet connection</div></div>
+
+
+		</div></div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="cbi-value" id="cbi-profile_berlin-profile-country" data-index="3" data-depends="[]"><label class="cbi-value-title" for="cbid.profile_berlin.profile.country">Download-Bandwidth</label>
+		<div class="cbi-value-field">
+
+
+
+	<div id="cbid.profile_berlin.profile.country" data-idref="36058012"><input id="widget.cbid.profile_berlin.profile.country" name="cbid.profile_berlin.profile.country" type="text" class="cbi-input-text" value="js@example.com"></div>
+
+
+		</div></div><div class="cbi-value" id="cbi-profile_berlin-profile-country" data-index="3" data-depends="[]"><label class="cbi-value-title" for="cbid.profile_berlin.profile.country">Upload-Bandwidth</label>
+		<div class="cbi-value-field">
+
+
+
+	<div id="cbid.profile_berlin.profile.country" data-idref="36058012"><input id="widget.cbid.profile_berlin.profile.country" name="cbid.profile_berlin.profile.country" type="text" class="cbi-input-text" value="js@example.com"></div>
+
+
+		</div></div><div class="cbi-value" id="cbi-profile_berlin-profile-ssid" data-index="4" data-depends="[]"><label class="cbi-value-title" for="cbid.profile_berlin.profile.ssid"></label>
+		<div class="cbi-value-field">
+
+
+
+	<div id="cbid.profile_berlin.profile.ssid" data-idref="8eb4eb70"><button class="cbi-button cbi-button-apply">Auto Bandwidth</button>
+    
+    &nbsp;
+    
+    <select id="widget.cbid.olsrd.cfg07d149.IpVersion" name="cbid.olsrd.cfg07d149.IpVersion" size="1" class="cbi-input-select"><option value="4" selected="">Choose predefined connection</option><option value="6and4">6and4</option></select></div>
+
+
+		</div></div><h3 name="content">Router Monitoring &amp; Updates</h3><div class="cbi-value" id="cbi-profile_berlin-profile-name" data-index="1" data-depends="[]"><label class="cbi-value-title" for="cbid.profile_berlin.profile.name">Enable Monitoring</label>
+		<div class="cbi-value-field">
+
+
+
+	<div id="cbid.profile_berlin.profile.name" data-idref="3fba37de"><select id="widget.cbid.olsrd.cfg07d149.IpVersion" name="cbid.olsrd.cfg07d149.IpVersion" size="1" class="cbi-input-select"><option value="4" selected="">Yes</option><option value="6and4">6and4</option></select><div class="cbi-value-description">Descriptive Text on Monitring-data</div></div>
+
+
+		</div></div><div class="cbi-value" id="cbi-profile_berlin-profile-name" data-index="1" data-depends="[]"><label class="cbi-value-title" for="cbid.profile_berlin.profile.name">Auto Update</label>
+		<div class="cbi-value-field">
+
+
+
+	<div id="cbid.profile_berlin.profile.name" data-idref="3fba37de"><select id="widget.cbid.olsrd.cfg07d149.IpVersion" name="cbid.olsrd.cfg07d149.IpVersion" size="1" class="cbi-input-select"><option value="4" selected="">Yes (stable)</option><option value="6and4">6and4</option></select><div class="cbi-value-description">Here you can choose the update branch.</div></div>
+
+
+		</div></div><h3 name="content">IP Configuration</h3><table class="table cbi-section-table">
+    <tbody><tr class="tr cbi-section-table-titles anonymous">
+        <th class="th cbi-section-table-cell" data-widget="CBI.ZoneForwards">IPv4 Mesh IPs</th>
+        <th class="th cbi-section-table-cell" data-widget="CBI.ListValue">IPv4 DHCP-Network</th>
+        <th class="th cbi-section-table-cell" data-widget="CBI.ListValue">IPv6 IPs</th>
+    </tr>
+    <tr id="cbi-firewall-cfg02dc81" class="tr cbi-section-table-row" data-sid="cfg02dc81" draggable="true" data-section-id="cfg02dc81">
+        <td class="td cbi-value-field" data-title="Zone ⇒ Weiterleitungen" data-description="" data-name="_info" data-widget="CBI.ZoneForwards" data-idref="a69fb0bd">
+            <div id="cbid.firewall.cfg02dc81.masq_src" class="cbi-dynlist" data-idref="d8d640c2" data-changed="true">
+                <div class="item flash" tabindex="0"><span>127.0.0.1/32</span><input type="hidden" value="127.0.0.1/32">
+                </div>
+                <div class="item flash" tabindex="0"><span>127.0.0.1/32</span><input type="hidden" value="127.0.0.1/32">
+                </div>
+                <div class="add-item"><input id="widget.cbid.firewall.cfg02dc81.masq_src" type="text" class="cbi-input-text" placeholder="0.0.0.0/0" data-is-list="true">
+                    <div class="btn cbi-button cbi-button-add">+</div>
+                </div>
+            </div>
+        </td>
+        <td class="td cbi-value-field" data-title="Zone ⇒ Weiterleitungen" data-description="" data-name="_info" data-widget="CBI.ZoneForwards" data-idref="a69fb0bd" valign="top">
+            <div id="cbid.firewall.cfg02dc81.masq_src" class="cbi-dynlist" data-idref="d8d640c2" data-changed="true">
+                <div class="item flash" tabindex="0"><span>127.0.0.1/32</span><input type="hidden" value="127.0.0.1/32">
+                </div>
+                <div class="add-item"><input id="widget.cbid.firewall.cfg02dc81.masq_src" type="text" class="cbi-input-text" placeholder="0.0.0.0/0" data-is-list="true">
+                    <div class="btn cbi-button cbi-button-add">+</div>
+                </div>
+            </div>
+        </td>
+        <td class="td cbi-value-field" data-title="Zone ⇒ Weiterleitungen" data-description="" data-name="_info" data-widget="CBI.ZoneForwards" data-idref="a69fb0bd">
+            <div id="cbid.firewall.cfg02dc81.masq_src" class="cbi-dynlist" data-idref="d8d640c2" data-changed="true">
+                <div class="item flash" tabindex="0"><span>127.0.0.1/32</span><input type="hidden" value="127.0.0.1/32">
+                </div>
+                <div class="add-item"><input id="widget.cbid.firewall.cfg02dc81.masq_src" type="text" class="cbi-input-text" placeholder="0.0.0.0/0" data-is-list="true">
+                    <div class="btn cbi-button cbi-button-add">+</div>
+                </div>
+            </div>
+        </td>
+    </tr>
+</tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+	</div>
+
+<!-- /nsection -->
+
+	
+</div>
+
+<div class="cbi-page-actions control-group"><input class="btn cbi-button cbi-button-apply" type="button" value="Next" onclick="cbi_submit(this, 'cbi.apply')">   </div>
+
+</form>
+
+<script type="text/javascript">cbi_init();</script>
+
+
+
+   <footer>
+    <a href="https://github.com/openwrt/luci">Powered by LuCI openwrt-21.02 branch (git-21.188.55099-e52e1de)</a> / OpenWrt 21.02-SNAPSHOT r16235-8921e36ed8
+    <br><a href="https://berlin.freifunk.net">Freifunk Berlin</a> ( v1.2.0-snapshot - f39e633) ath79 - generic
+    <ul class="breadcrumb pull-right" id="modemenu" style=""><li><a href="/cgi-bin/luci/freifunk">Freifunk</a> <span class="divider">|</span></li><li class="active"><a href="/cgi-bin/luci/admin">Administration</a> <span class="divider">|</span></li><li><a href="/cgi-bin/luci/owm">OpenWifiMap</a> <span class="divider">|</span></li></ul>
+   </footer>
+  </div><div id="modal_overlay"><div class="modal" role="dialog" aria-modal="true"></div></div><div class="cbi-tooltip error">▲ Erwarte: Wert zwischen 0 und 32</div>
+  <script type="text/javascript">L.require('menu-bootstrap')</script>
+ 
+
+
+
+
+</body>
