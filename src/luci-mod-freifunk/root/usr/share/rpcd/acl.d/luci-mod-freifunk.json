@@ -1,0 +1,11 @@
+{
+	"luci-mod-freifunk-status": {
+		"description": "Grant access to realtime statistics",
+		"read": {
+			"ubus": {
+				"luci": [ "getConntrackList", "getRealtimeStats" ],
+				"network.rrdns": [ "lookup" ]
+			}
+		}
+	}
+}

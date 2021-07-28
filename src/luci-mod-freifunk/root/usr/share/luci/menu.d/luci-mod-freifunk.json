@@ -1,0 +1,22 @@
+{
+	"admin/freifunk": {
+		"title": "Freifunk",
+		"order": 5,
+		"action": {
+			"type": "firstchild",
+			"recurse": true
+		}
+	},
+
+	"admin/freifunk/status": {
+		"title": "Freifunk Overview",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "freifunk/index"
+		},
+		"depends": {
+
+		}
+	}
+}

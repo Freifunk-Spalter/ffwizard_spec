@@ -1,0 +1,41 @@
+{
+	"freifunk": {
+		"title": "Freifunk",
+		"order": 5,
+		"action": {
+			"type": "firstchild"
+		},
+		"auth": { }
+	},
+ 
+	"freifunk/overview": {
+		"title": "Overview",
+		"order": 20,
+		"action": {
+			"type": "view",
+			"path": "freifunk/index"
+		}
+	},
+
+	"freifunk/contact": {
+		"title": "Contact",
+		"order": 30,
+		"action": {
+			"type": "view",
+			"path": "freifunk/contact"
+		}
+	},
+
+	"admin/login": {
+		"title": "Login",
+		"order": 999,
+		"action": {
+			"type": "cbi",
+			"path": "admin",
+		},
+		"auth": {
+			"methods": [ "cookie:sysauth" ],
+			"login": true
+		}
+	}
+}
