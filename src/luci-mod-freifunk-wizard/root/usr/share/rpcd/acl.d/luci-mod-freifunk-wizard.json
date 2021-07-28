@@ -1,0 +1,11 @@
+{
+	"luci-mod-freifunk-wizard": {
+		"description": "Grant access to wizard configuration",
+		"read": {
+			"uci": [ "wizard" ]
+		},
+		"write": {
+			"uci": [ "wizard" ]
+		}
+	}
+}
