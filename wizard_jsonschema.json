@@ -10,31 +10,35 @@
             "pattern": "^1\\.0$"
         },
         "created": {
-            "type":"string",
+            "type": "string",
             "format": "date-time"
         },
         "contact": {
-            "type": "object",
-            "properties": {
-                "nickname": {
-                    "type": "string"
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "nickname": {
+                        "type": "string"
+                    },
+                    "realname": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "url": {
+                        "description": "At default, config.berlin.freifunk.net will insert the link to the mail-form here.",
+                        "type": "string",
+                        "format": "uri"
+                    }
                 },
-                "realname": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string",
-                    "format": "email"
-                },
-                "url": {
-                    "description": "At default, config.berlin.freifunk.net will insert the link to the mail-form here.",
-                    "type": "string",
-                    "format": "uri"
-                }
-            },
-            "required": [
-                "url"
-            ]
+                "required": [
+                    "url"
+                ]
+            }
         },
         "node": {
             "type": "object",
@@ -132,9 +136,9 @@
                             "type": "string",
                             "minLength": 9
                         },
-                        "ipv6":{
+                        "ipv6": {
                             "description": "ipv6-network from that we get mesh and ip-address.",
-                            "type":"string"
+                            "type": "string"
                         }
                     },
                     "required": [
